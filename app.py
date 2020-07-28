@@ -233,7 +233,9 @@ def addUpdate():
             # insert new ads image url so that can use for html
             data_updates.insert({'update_heading': update_heading, 'update_text': update_text, 'update_link': update_link, 'update_messenger':update_messenger })
             # return a message to the user
-            return render_template('homePage.html', updatesData = updatesData)
+            # return render_template('homePage.html', updatesData = updatesData)
+            return "Succesfully added an update, navigate to the <a href ='/homePage'> home page </a> to see the lastest update!"
+
         else:
             return render_template('addUpdate.html')
     else:
