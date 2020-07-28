@@ -180,6 +180,7 @@ def art_Meme():
     artsData.reverse()
     return render_template('art_Meme.html', artsData = artsData)
 
+
 @app.route('/addAds', methods= ["GET", "POST"])
 def addAds():
     if request.method == "POST":
