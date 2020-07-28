@@ -85,14 +85,14 @@ body {
     {% for item in range(artsData|length) %} 
     <div class="row mb-2 justify-content-center">
         {% if item % 2 == 1 %}
-            <div class="col-md-6 mb-5 text-center">
+            <div class="col-6 mb-5 text-center">
             <h3>  {{ artsData[item]["art_description"] }} </h3>
-        <img  src= {{artsData[item]["art_link"]}} alt="Art Image" width= "50%" height="auto">
+        <img  src= {{artsData[item]["art_link"]}} alt="Art Image" width= "100%" height="auto">
             </div>
         {% else %}
-            <div class="col-md-6 mb-5 text-center">
+            <div class="col-6 mb-5 text-center">
             <h3>  {{ artsData[item]["art_description"] }} </h3>
-        <img src= {{artsData[item]["art_link"]}} alt="Art Image" width= "50%" height="auto">
+        <img src= {{artsData[item]["art_link"]}} alt="Art Image" width= "100%" height="auto">
             </div> 
         {% endif %}    
     </div>
