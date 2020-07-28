@@ -101,7 +101,7 @@ body {
                         <div class="profile-work">
                             <p>WORK LINK</p> 
                             <!-- We can set python if statements to check if user has these and display them if they do -->
-                            <a href="">Github Link</a><br/> 
+                            <a href={{ user['user_linkedin'] }} target="_blank">Github Link</a><br/> 
                             <a href="">Personal Website Link</a><br/>
                             <a href="">Social Media?</a>
                             <p>SKILLS</p>
@@ -121,7 +121,7 @@ body {
                                                 <label>User Id</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p> </p>
+                                                <p> Hello </p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -129,12 +129,12 @@ body {
                                                 <label>Name</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p> </p>
+                                                <p> {{ user['user_name']}} </p>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label> {{ user['user_name']}}  </label>
+                                                <label>Email</label>
                                             </div>
                                             <div class="col-md-6">
                                                 <p> {{ user['user_email'] }} </p>
@@ -142,19 +142,13 @@ body {
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Phone</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>123 456 7890</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
                                                 <label>Education</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p> {{ user["user_email"] }} </p>
+                                                <p> {{ user['user_education'] }} </p>
                                             </div>
+                                        </div>
+
                                         </div>
                             </div>
                             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
