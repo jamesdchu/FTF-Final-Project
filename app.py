@@ -70,6 +70,8 @@ def signUp():
         user_email = request.form["user_email"]
         user_password = request.form["psw"]
         user_password_repeat = request.form["psw-repeat"]
+        bio = request.form["bio"]
+        program = request.form["program"]
         ##Checking if the email is already registered and connecting to database
         data_user_info = mongo.db.user_info
         user_info = data_user_info.find({})
@@ -85,7 +87,7 @@ def signUp():
             #Adding new user to database
             data_user_info.insert({"user_name":user_name,"user_email":user_email, "user_password": 
             user_password,"user_password_repeat":user_password_repeat, "user_interest": user_interest, 
-            "user_education": user_education, "user_headline": user_headline, 'user_linkedin': user_linkedin })
+            "user_education": user_education, "user_headline": user_headline, 'user_linkedin': user_linkedin, 'bio': bio, 'program': program})
             # return redirect(url_for('homePage.html'))
             session["user_email"] = user_email
             return render_template('homePage.html', user_infoData = user_infoData)
