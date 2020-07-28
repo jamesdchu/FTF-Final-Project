@@ -87,7 +87,7 @@ def signUp():
             #Adding new user to database
             data_user_info.insert({"user_name":user_name,"user_email":user_email, "user_password": 
             user_password,"user_password_repeat":user_password_repeat, "user_interest": user_interest, 
-            "user_education": user_education, "user_headline": user_headline, 'user_linkedin': user_linkedin, 'bio': bio, 'program': program})
+            "user_education": user_education, "user_headline": user_headline, 'user_linkedin': user_linkedin, 'bio': bio, 'user_program': program})
             # return redirect(url_for('homePage.html'))
             session["user_email"] = user_email
             return render_template('homePage.html', user_infoData = user_infoData)

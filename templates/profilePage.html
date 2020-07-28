@@ -49,7 +49,7 @@ body {
   <a href="discussionPage">Discussion</a>
   <a href="resourcesPage">Resources</a>
   <a href=art_Meme> UpperLine Art & Memes</a>
-  <a href="/signOut">Sign Out</a>
+  <a href="/homePage">Sign Out</a>
 </div>
 
 <!-- <div class = "container" >
@@ -98,7 +98,7 @@ body {
                         <div class="profile-work">
                             <p>WORK LINK</p> 
                             <!-- We can set python if statements to check if user has these and display them if they do -->
-                            <a href={{ user['user_linkedin'] }} target="_blank">LinkedIn Link</a><br/> 
+                            <a href={{ user['user_linkedin'] }} target="_blank">LinkedIn</a><br/> 
                             <a href="">Personal Website Link</a><br/>
                             <a href="">Social Media?</a>
                             <p>SKILLS</p>
@@ -118,7 +118,7 @@ body {
                                                 <label>Upperline Code Program(s)</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p> {{ user['program'] }} </p>
+                                                <p> {{ user['user_program'] }} </p>
                                             </div>
                                         </div>
                                         <div class="row">
