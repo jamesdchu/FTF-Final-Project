@@ -152,33 +152,44 @@ def resourcesPage():
 
 @app.route('/profilePage', methods= ["GET", "POST"])
 def profilePage():
-    users = mongo.db.user_info
-    email = session['user_email']
-    user = users.find({"user_email":email})
-    return render_template('profilePage.html', user=user)
+    if session:
+        users = mongo.db.user_info
+        email = session['user_email']
+        user = users.find_one({"user_email":email})
+        return render_template('profilePage.html', user=user)
+    else:
+        return "You are not Signed In, navigate to the <a href ='/welcomePage'> welcome page </a> to log in!"
 
 @app.route('/artPage', methods= ["GET", "POST"])
 def artPage():
-    art_description = request.form["art_description"]
-    art_link = request.form["art_link"]
-    data_arts = mongo.db.arts
-    arts = data_arts.find({})
-    artsData = []
-    for i in arts:
-        artsData.append(i)
-    artsData.reverse()
-    data_arts.insert({'art_description': art_description, 'art_link': art_link})
-    return render_template('art_Meme.html', artsData = artsData)
+    if session:
+        art_description = request.form["art_description"]
+        art_link = request.form["art_link"]
+        data_arts = mongo.db.arts
+        arts = data_arts.find({})
+        artsData = []
+        for i in arts:
+            artsData.append(i)
+        artsData.reverse()
+        data_arts.insert({'art_description': art_description, 'art_link': art_link})
+        return render_template('art_Meme.html', artsData = artsData)
+    else:
+        return "You are not Signed In, navigate to the <a href ='/welcomePage'> welcome page </a> to log in!"
+
 
 @app.route('/art_Meme', methods= ["GET", "POST"])
 def art_Meme():
-    data_arts = mongo.db.arts
-    arts = data_arts.find({})
-    artsData = []
-    for i in arts:
-        artsData.append(i)
-    artsData.reverse()
-    return render_template('art_Meme.html', artsData = artsData)
+    if session:
+        data_arts = mongo.db.arts
+        arts = data_arts.find({})
+        artsData = []
+        for i in arts:
+            artsData.append(i)
+        artsData.reverse()
+        return render_template('art_Meme.html', artsData = artsData)
+    else:
+        return "You are not Signed In, navigate to the <a href ='/welcomePage'> welcome page </a> to log in!"
+
 
 
 @app.route('/addAds', methods= ["GET", "POST"])
@@ -201,21 +212,25 @@ def addAds():
 
 @app.route('/addUpdate', methods= ["GET", "POST"])
 def addUpdate():
-    if request.method == "POST":
-        # connect to the database
-        update_heading = request.form["update_heading"]
-        update_messenger = request.form["update_messenger"]
-        update_text = request.form["update_text"] 
-        update_link = request.form["update_link"] 
-        data_updates = mongo.db.updates
-        updates = data_updates.find({})
-        updatesData = []
-        for i in updates:
-            updatesData.append(i)
-        updatesData.reverse()
-        # insert new ads image url so that can use for html
-        data_updates.insert({'update_heading': update_heading, 'update_text': update_text, 'update_link': update_link, 'update_messenger':update_messenger })
-        # return a message to the user
-        return render_template('homePage.html', updatesData = updatesData)
+    if session:
+        if request.method == "POST":
+            # connect to the database
+            update_heading = request.form["update_heading"]
+            update_messenger = request.form["update_messenger"]
+            update_text = request.form["update_text"] 
+            update_link = request.form["update_link"] 
+            data_updates = mongo.db.updates
+            updates = data_updates.find({})
+            updatesData = []
+            for i in updates:
+                updatesData.append(i)
+            updatesData.reverse()
+            # insert new ads image url so that can use for html
+            data_updates.insert({'update_heading': update_heading, 'update_text': update_text, 'update_link': update_link, 'update_messenger':update_messenger })
+            # return a message to the user
+            return render_template('homePage.html', updatesData = updatesData)
+        else:
+            return render_template('addUpdate.html')
     else:
-        return render_template('addUpdate.html')
+        return "You are not Signed In, navigate to the <a href ='/welcomePage'> welcome page </a> to log in!"
+
