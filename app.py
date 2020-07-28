@@ -155,7 +155,7 @@ def profilePage():
     if session:
         users = mongo.db.user_info
         email = session['user_email']
-        user = users.find_one({"user_email":email})
+        user = users.find({"user_email":email})
         return render_template('profilePage.html', user=user)
     else:
         return "You are not Signed In, navigate to the <a href ='/welcomePage'> welcome page </a> to log in!"
