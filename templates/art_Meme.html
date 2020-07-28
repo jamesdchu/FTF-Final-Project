@@ -66,30 +66,33 @@ body {
         </div>
     <br>
 
-    <div class="container-fluid">
-        <div class="row mb-2 " >
-                   <div class="col-md-6 mb-2 ">
- 
-        
-        </div>
-        
-            <!-- <div class="col-md-6  row justify-content-center">
-        <img class = "mb-5" src="https://files.slack.com/files-pri/T015TDL95UY-F017MP1S9DZ/whiteboard_2_-01.png" alt="Art" width= "100%" height="auto">
-            </div>
-            <br>
-        </div>
-
     <div class="row mb-2">
-            <div class="col-md-6  row justify-content-center">
+            <div class="col-md-6 justify-content-center">
         <img class = "mb-5" src="https://files.slack.com/files-pri/T015TDL95UY-F017MP1NABV/whiteboard_1_-01.png" alt="Art" width= "100%" height="auto" >
             </div>
             <br>
-            <div class="col-md-6  row justify-content-center">
+            <div class="col-md-6  justify-content-center">
         <img class = "mb-5" src="https://slack-imgs.com/?c=1&o1=ro&url=https%3A%2F%2Fi.imgflip.com%2F4936cj.jpg" alt="Art" width= "100%" height="auto" >
-            </div>          -->
-    <!-- </div> -->
+            </div>      
+    </div>
 
-         {% for item in range(artsData|length) %} 
+    {% for item in range(artsData|length) %} 
+    <div class="row mb-2">
+        {% if item % 2 == 1 %}
+            <div class="col-md-6 justify-content-center">
+        <img class = "mb-5" src= {{artsData[item]["art_link"]}} alt="Art Image" width= "100%" height="auto">
+            <h3>  {{ artsData[item]["art_description"] }} </h3>
+            </div>
+            <br>
+        {% else %}
+            <div class="col-md-6  justify-content-center">
+        <img class = "mb-5" src="https://slack-imgs.com/?c=1&o1=ro&url=https%3A%2F%2Fi.imgflip.com%2F4936cj.jpg" alt="Art" width= "100%" height="auto" >
+            </div>  
+        {% endif %}    
+    </div>
+    {% endfor %} 
+
+         <!-- {% for item in range(artsData|length) %} 
     <div class="row mb-2">
         {%if item % 2 == 1 %}
             <div class="col-md-6   justify-content-center">
@@ -103,7 +106,7 @@ body {
             </div>        
         {% endif %}
     </div>
-        {% endfor %} 
+        {% endfor %}  -->
 
 <!-- layout, want to use for loop so that will just atore pictures in database -->
         <!-- <div class="row">

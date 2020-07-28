@@ -175,7 +175,7 @@ def addArt():
             data_arts.insert({'art_description': art_description, 'art_link': art_link})
             return render_template('art_Meme.html', artsData = artsData)
         else:
-            return render_template('addArt.html')
+            return render_template('addArt.html', artsData = artsData)
     else:
         return "You are not Signed In, navigate to the <a href ='/welcomePage'> welcome page </a> to log in!"
 
