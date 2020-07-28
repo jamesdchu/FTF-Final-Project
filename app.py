@@ -163,7 +163,9 @@ def profilePage():
 @app.route('/addArt', methods= ["GET", "POST"])
 def addArt():
     if session:
-        if request.method == "POST":
+        if request.method == "GET":
+            return render_template('addArt.html')
+        else:
             art_description = request.form["art_description"]
             art_link = request.form["art_link"]
             data_arts = mongo.db.arts
@@ -173,9 +175,9 @@ def addArt():
                 artsData.append(i)
             artsData.reverse()
             data_arts.insert({'art_description': art_description, 'art_link': art_link})
-            return render_template('art_Meme.html', artsData = artsData)
-        else:
-            return render_template('addArt.html', artsData = artsData)
+            # return render_template('art_Meme.html', artsData = artsData)    
+            return "You memory was added, navigate to the <a href ='/art_Meme'> collection </a> to see it!"
+
     else:
         return "You are not Signed In, navigate to the <a href ='/welcomePage'> welcome page </a> to log in!"
 

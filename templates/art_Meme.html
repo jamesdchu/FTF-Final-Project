@@ -19,6 +19,12 @@ body {
   background-color: #333;
 }
 
+.column {
+  -ms-flex: 50%; /* IE 10 */
+  flex: 50%;
+  padding: 0 4px;
+}
+
 .topnav a {
   float: left;
   color: #f2f2f2;
@@ -77,17 +83,18 @@ body {
     </div>
 
     {% for item in range(artsData|length) %} 
-    <div class="row mb-2">
+    <div class="row mb-2 justify-content-center">
         {% if item % 2 == 1 %}
-            <div class="col-md-6 justify-content-center">
-        <img class = "mb-5" src= {{artsData[item]["art_link"]}} alt="Art Image" width= "100%" height="auto">
+            <div class="col-md-6 text-center">
             <h3>  {{ artsData[item]["art_description"] }} </h3>
+        <img class = "mb-5" src= {{artsData[item]["art_link"]}} alt="Art Image" width= "100%" height="auto">
             </div>
             <br>
         {% else %}
-            <div class="col-md-6  justify-content-center">
-        <img class = "mb-5" src="https://slack-imgs.com/?c=1&o1=ro&url=https%3A%2F%2Fi.imgflip.com%2F4936cj.jpg" alt="Art" width= "100%" height="auto" >
-            </div>  
+            <div class="col-md-6 text-center">
+            <h3>  {{ artsData[item]["art_description"] }} </h3>
+        <img class = "mb-5" src= {{artsData[item]["art_link"]}} alt="Art Image" width= "100%" height="auto">
+            </div> 
         {% endif %}    
     </div>
     {% endfor %} 
