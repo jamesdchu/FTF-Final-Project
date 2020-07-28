@@ -81,7 +81,7 @@ body {
                                     <h6>
                                         {{ user["user_headline"] }}
                                     </h6>
-                                    <p class="FILL IN">FILL IN : </p>
+                                    <p class="FILL IN"> Biography: {{ user["bio"] }}  </p>
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
                                     <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
@@ -101,7 +101,7 @@ body {
                         <div class="profile-work">
                             <p>WORK LINK</p> 
                             <!-- We can set python if statements to check if user has these and display them if they do -->
-                            <a href={{ user['user_linkedin'] }} target="_blank">Github Link</a><br/> 
+                            <a href={{ user['user_linkedin'] }} target="_blank">LinkedIn Link</a><br/> 
                             <a href="">Personal Website Link</a><br/>
                             <a href="">Social Media?</a>
                             <p>SKILLS</p>
