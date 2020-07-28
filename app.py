@@ -160,19 +160,22 @@ def profilePage():
     else:
         return "You are not Signed In, navigate to the <a href ='/welcomePage'> welcome page </a> to log in!"
 
-@app.route('/artPage', methods= ["GET", "POST"])
-def artPage():
+@app.route('/addArt', methods= ["GET", "POST"])
+def addArt():
     if session:
-        art_description = request.form["art_description"]
-        art_link = request.form["art_link"]
-        data_arts = mongo.db.arts
-        arts = data_arts.find({})
-        artsData = []
-        for i in arts:
-            artsData.append(i)
-        artsData.reverse()
-        data_arts.insert({'art_description': art_description, 'art_link': art_link})
-        return render_template('art_Meme.html', artsData = artsData)
+        if request.method == "POST":
+            art_description = request.form["art_description"]
+            art_link = request.form["art_link"]
+            data_arts = mongo.db.arts
+            arts = data_arts.find({})
+            artsData = []
+            for i in arts:
+                artsData.append(i)
+            artsData.reverse()
+            data_arts.insert({'art_description': art_description, 'art_link': art_link})
+            return render_template('art_Meme.html', artsData = artsData)
+        else:
+            return render_template('addArt.html')
     else:
         return "You are not Signed In, navigate to the <a href ='/welcomePage'> welcome page </a> to log in!"
 
