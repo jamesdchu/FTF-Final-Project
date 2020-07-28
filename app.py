@@ -58,6 +58,44 @@ def homePage():
             return render_template('homePage.html', updatesData = updatesData, adsData = adsData)
         else:
             return "You are not signed in. Please navigate to the <a href ='/welcomePage'> welcome page </a> to access the network!"
+        # return render_template('signUp.html')
+    else:
+        user_name = request.form["user_name"]
+        user_interest = request.form["user_interest"]
+        user_education = request.form["user_education"]
+        user_headline = request.form["user_headline"]
+        user_linkedin = request.form["user_linkedin"]
+        user_email = request.form["user_email"]
+        user_password = request.form["psw"]
+        user_password_repeat = request.form["psw-repeat"]
+        bio = request.form["bio"]
+        program = request.form["program"]
+        ##Checking if the email is already registered and connecting to database
+        data_user_info = mongo.db.user_info
+        user_info = data_user_info.find({})
+        user_infoData = []
+        for i in user_info:
+            user_infoData.append(i)
+        # user_infoData.sort("user_name")
+        existing_user = data_user_info.find_one({'user_email' : user_email})
+        if existing_user is None: 
+            #Checking that user entered same password
+            if not (user_password == user_password_repeat): 
+                return ("You entered different passwords, please try again!")
+            #Adding new user to database
+            data_user_info.insert({"user_name":user_name,"user_email":user_email, "user_password": 
+            user_password,"user_password_repeat":user_password_repeat, "user_interest": user_interest, 
+            "user_education": user_education, "user_headline": user_headline, 'user_linkedin': user_linkedin, 'bio': bio, 'user_program': program})
+            # return redirect(url_for('homePage.html'))
+            session["user_email"] = user_email
+            return render_template('homePage.html', user_infoData = user_infoData)
+        return 'That email already exists! Try logging in.'
+    return render_template('signUp.html')
+
+@app.route('/signIn', methods= ["GET", "POST"])
+def signIn():
+    if request.method=="GET":
+        return render_template('signIn.html')
     else:
         user_email = request.form["user_email"]
         user_password = request.form["password"]
@@ -318,4 +356,3 @@ def addUpdate():
             return render_template('addUpdate.html')
     else:
         return "You are not Signed In, navigate to the <a href ='/welcomePage'> welcome page </a> to log in!"
-
