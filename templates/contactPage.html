@@ -12,7 +12,7 @@
 body {font-family: Arial, Helvetica, sans-serif;}
 
 /* Full-width input fields */
-input[type=text], input[type=password], input[type=url], input[type=email] {
+input[type=text], input[type=password], input[type=url], input[type=email], input[type=date]  {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -156,15 +156,10 @@ body {
 </head>
 
 <body>
-
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <a class="navbar-brand nav-link" href="welcomePage">Welcome <span class="sr-only">(current)</span> </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="navbar navbar-expand-lg" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">  
+  <div class="navbar navbar-expand-lg " id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto col-12 justify-content-left">
+        <a class="navbar-brand nav-link" href="welcomePage">Welcome <span class="sr-only">(current)</span> </a>
       <li class="nav-item">
         <a class="nav-link" href='https://www.upperlinecode.com/about'>About Upperline </a>
       </li>
@@ -180,17 +175,17 @@ body {
       <li class="nav-item">
         <a class="nav-link" onclick="document.getElementById('id02').style.display='block'" style="width:auto;">Sign Up</a>
       </li>
-    </ul>
-
-
-    <!-- doesnt work so commented out  -->
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
+    <form class="form-inline my-2 my-md-0 col justify-content-right">
+        <div class = "col">
+    <input class="form-control mr-sm-0" type="search" placeholder="Search" aria-label="Search">
+        </div>
+        <div class = "col">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </div>
     </form> 
+    </ul>
   </div>
 </nav>
-
 
     <!-- sign in pop up -->
 <div id="id01" class="modal">
@@ -293,25 +288,30 @@ body {
     <div style="text-align:center">
         <br> <br>
     <h2>Feel free to also connect with us on Linkedin!</h2>
-    <h3><a href='https://www.linkedin.com/in/aaron-amankwaah-76b10a196/'>Aaron Amankwaah</a></h3> 
+    <h3><a href='https://www.linkedin.com/in/aaronam02'>Aaron Amankwaah</a></h3> 
     <h3><a href='https://www.linkedin.com/in/jamesdchu/'>James Chu</a></h3>
     </div>
     </div>
     <div class="column">
-      <form action="/welcomePage">
+      <form method = "post" action="/contactPage">
         <label for="fname">First Name</label>
-        <input type="text" id="fname" name="firstname" placeholder="Your name..">
+        <input type="text" id="fname" name="firstname" placeholder="Your name.." required>
         <label for="lname">Last Name</label>
-        <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+        <input type="text" id="lname" name="lastname" placeholder="Your last name.." required>
+        <label for="email">Your Email</label>
+        <input type="email" id="email" name="email" placeholder="Your email name.." required>
         <label for="country">State</label>
-        <select id="country" name="state">
+        <select id="country" name="state" required>
           <option value="none">--Select--</option>
-          <option value="australia">CA</option>
-          <option value="canada">NJ</option>
-          <option value="usa">NY</option>
+          <option value="ca">CA</option>
+          <option value="nj">NJ</option>
+          <option value="ny">NY</option>
+          
         </select>
         <label for="subject">Subject</label>
-        <textarea id="subject" name="subject" placeholder="Write something.." style="height:170px"></textarea>
+        <textarea id="subject" name="subject" placeholder="Write something.." style="height:170px" required></textarea>
+        <label for="date">Date</label>
+        <input type="date" id="date" name="date" required>
         <input type="submit" value="Submit">
       </form>
     </div>

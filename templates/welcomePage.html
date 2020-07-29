@@ -157,14 +157,10 @@ body {
 
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <a class="navbar-brand active" href="welcomePage">Welcome <span class="sr-only">(current)</span> </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="navbar navbar-expand-lg" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">  
+  <div class="navbar navbar-expand-lg " id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto col-12 justify-content-left">
+      <a class="navbar-brand active" href="welcomePage">Welcome <span class="sr-only">(current)</span> </a>
       <li class="nav-item">
         <a class="nav-link" href='https://www.upperlinecode.com/about'>About Upperline </a>
       </li>
@@ -180,28 +176,17 @@ body {
       <li class="nav-item">
         <a class="nav-link" onclick="document.getElementById('id02').style.display='block'" style="width:auto;">Sign Up</a>
       </li>
-      <!-- <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
+    <form class="form-inline my-2 my-md-0 col justify-content-right">
+        <div class = "col">
+    <input class="form-control mr-sm-0" type="search" placeholder="Search" aria-label="Search">
         </div>
-      </li> -->
-    </ul>
-
-
-    <!-- doesnt work so commented out  -->
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
+        <div class = "col">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </div>
     </form> 
+    </ul>
   </div>
 </nav>
-
 
     <!-- sign in pop up -->
 <div id="id01" class="modal">
