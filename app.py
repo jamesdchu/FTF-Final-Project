@@ -198,19 +198,6 @@ def signIn():
     #         return "Success! You have signed in! Go to the <a href='/homePage'> home page! </a>"
     #     return 'Invalid combination!'
 
-# @app.route('/add')
-
-# def add():
-#     # connect to the database
-#     user_email = request.form["user_email"] 
-#     collection = mongo.db.user_info
-#     # user_info = collection.find({})
-#     collection.insert({'user_name': "jameschu", "user_email":"james2@gmail.com", "user_password": "password"})
-#     # insert new data
-#     # return a message to the user
-#     return "Done!"
-
-
 # @app.route('/signUp', methods = ["GET", "POST"])
 # def signUp():
 @app.route('/contactPage', methods= ["GET", "POST"])
@@ -267,7 +254,7 @@ def profilePage():
                 return ("You entered different passwords, please try again!")
             #Adding new user to database
             data_user_info.insert({"user_name":user_name,"user_email":user_email, "user_password": 
-            str(bcrypt.hashpw(user_password.encode("utf-8"), bcrypt.gensalt()), 'utf-8'),"user_password_repeat":user_password_repeat, "user_interest": user_interest, 
+            str(bcrypt.hashpw(user_password.encode("utf-8"), bcrypt.gensalt()), 'utf-8'), "user_interest": user_interest, 
             "user_education": user_education, "user_headline": user_headline, 'user_linkedin': user_linkedin, 'bio': bio, 'program': program})
             # return redirect(url_for('homePage.html'))
             session["user_email"] = user_email
