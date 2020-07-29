@@ -237,3 +237,8 @@ def addUpdate():
             return render_template('addUpdate.html')
     else:
         return "You are not Signed In, navigate to the <a href ='/welcomePage'> welcome page </a> to log in!"
+
+@app.route('communityPage')
+def communityPage():
+    users = mongo.db.user_info
+    return render_template('communityPage.html', users=users)
