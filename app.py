@@ -37,30 +37,6 @@ def homePage():
         if session:
             # Retrieving updates and ads for home page
             data_updates = mongo.db.updates
-            updatesData = model.convert(data_updates)
-            data_ads = mongo.db.ads
-            adsData = model.convert(data_ads)
-            return render_template('homePage.html', updatesData = updatesData, adsData = adsData)
-        else:
-            # Returning user to welcome page to sign in/sign up
-            return "You are not signed in. Please navigate to the <a href ='/welcomePage'> welcome page </a> to access the network!"
-    else:
-        user_email = request.form["user_email"]
-        user_password = request.form["password"]
-        ##Connecting to database
-        data_user_info = mongo.db.user_info
-        user_infoData = model.convert(data_user_info)
-        #Checking to see if email in database
-        login_user = data_user_info.find_one({'user_email' : user_email})
-        if login_user is None: 
-            return ("It seems like you do not have an account, please type your email correctly or sign up!")
-        elif (bcrypt.hashpw(user_password.encode('utf-8'), login_user['user_password'].encode('utf-8')) != login_user["user_password"].encode('utf-8')): #user_password != login_user["user_password"]:
-            print(login_user['user_password'].encode('utf-8'))
-            print(bcrypt.hashpw(user_password.encode('utf-8'), login_user['user_password'].encode('utf-8')))
-            return "Incorrect password, please try again!"
-        elif (user_email == login_user["user_email"]) and (bcrypt.hashpw(user_password.encode('utf-8'), login_user['user_password'].encode('utf-8')) == login_user["user_password"].encode('utf-8')): 
-            session["user_email"] = user_email
-            data_updates = mongo.db.updates
             updates = data_updates.find({})
             updatesData = []
             for i in updates:
@@ -73,7 +49,42 @@ def homePage():
             for i in ads:
                 adsData.append(i)
             adsData.reverse()
-            # return "Success! You have signed in! Go to the <a href='/homePage'> home page! </a>"
+            return render_template('homePage.html', updatesData = updatesData, adsData = adsData)
+        else:
+            # Returning user to welcome page to sign in/sign up
+            return "You are not signed in. Please navigate to the <a href ='/welcomePage'> welcome page </a> to access the network!"
+    else:
+        user_email = request.form["user_email"]
+        user_password = request.form["password"]
+        ##Connecting to database
+        data_user_info = mongo.db.user_info
+        data_user = data_user_info.find({})
+        user_infoData = []
+        for i in data_user:
+            user_infoData.append(i)
+        user_infoData.reverse()
+        #Checking to see if email in database
+        login_user = data_user_info.find_one({'user_email' : user_email})
+        if login_user is None: 
+            return ("It seems like you do not have an account, please type your email correctly or sign up!")
+        elif (bcrypt.hashpw(user_password.encode('utf-8'), login_user['user_password'].encode('utf-8')) != login_user["user_password"].encode('utf-8')):
+            #Checks to see if user typed in the same password twice 
+            return "Incorrect password, please try again!"
+        elif (user_email == login_user["user_email"]) and (bcrypt.hashpw(user_password.encode('utf-8'), login_user['user_password'].encode('utf-8')) == login_user["user_password"].encode('utf-8')): 
+            #Checks to see if user email and password matches the inputted user email and password
+            session["user_email"] = user_email
+            data_updates = mongo.db.updates
+            updates = data_updates.find({})
+            updatesData = []
+            for i in updates:
+                updatesData.append(i)
+            updatesData.reverse()
+            data_ads = mongo.db.ads
+            ads = data_ads.find({})
+            adsData = []
+            for i in ads:
+                adsData.append(i)
+            adsData.reverse()
             return render_template('homePage.html', updatesData = updatesData, adsData = adsData)
         return 'Invalid combination! Please Try Again'
 
