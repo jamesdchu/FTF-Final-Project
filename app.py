@@ -91,13 +91,31 @@ def homePage():
 
 @app.route('/contactPage', methods= ["GET", "POST"])
 def contactPage():
-    data_user_info = mongo.db.user_info
-    user_info = data_user_info.find({})
-    user_infoData = []
-    for i in user_info:
-        user_infoData.append(i)
-    # user_infoData.sort()
-    return render_template('contactPage.html', user_infoData = user_infoData)
+    if request.method == "GET":
+        data_user_info = mongo.db.user_info
+        user_info = data_user_info.find({})
+        user_infoData = []
+        for i in user_info:
+            user_infoData.append(i)
+        # user_infoData.sort()
+        return render_template('contactPage.html', user_infoData = user_infoData)
+    else:
+        contact_fname = request.form["firstname"]
+        contact_lname = request.form["lastname"]
+        contact_email = request.form["email"]
+        contact_location = request.form["state"]
+        contact_reason = request.form["subject"]
+        contact_date =  request.form["date"]
+        data_contactUs = mongo.db.contactUs
+        contactUs = data_contactUs.find({})
+        #array for contact us infomation so that we can use api to email them
+        contactUsData = []
+        for i in contactUs:
+            contactUsData.append(i)
+        data_contactUs.insert({'contact_fname': contact_fname, 'contact_lname':contact_lname, 'contact_location': contact_location, 'contact_reason': contact_reason, 'contact_date': contact_date, 'contact_email' : contact_email})
+        # return render_template('art_Meme.html', contactUs = contactUs)    
+        return "<h1>Thank you for reaching out, your email has been sent. We will get back to you as soon as possible. Navigate to the <a href ='/welcomePage'> welcome page </a> to sign in!"
+        
 
 @app.route('/discussionPage')#, methods= ["GET", "POST"])
 def discussionPage():
