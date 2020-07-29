@@ -240,5 +240,6 @@ def addUpdate():
 
 @app.route('/communityPage')
 def communityPage():
-    users = mongo.db.user_info
+    users = mongo.db.user_info.find({})
+    print(users)
     return render_template('communityPage.html', users=users)
