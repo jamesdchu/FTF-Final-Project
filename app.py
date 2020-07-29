@@ -86,6 +86,7 @@ def homePage():
                 adsData.append(i)
             adsData.reverse()
             return render_template('homePage.html', updatesData = updatesData, adsData = adsData)
+        #None of the above apply, the inputted email and password aren't a valid combination
         return 'Invalid combination! Please Try Again'
 
 @app.route('/contactPage', methods= ["GET", "POST"])
@@ -214,7 +215,11 @@ def addUpdate():
         if request.method == "POST":
             # connect to the database
             update_heading = request.form["update_heading"]
-            update_messenger = request.form["update_messenger"]
+            # update_messenger = request.form["update_messenger"]
+            #Uses session to find the users name
+            users = mongo.db.user_info
+            email = session['user_email']
+            user = users.find_one({"user_email":email})
             update_text = request.form["update_text"] 
             update_link = request.form["update_link"] 
             data_updates = mongo.db.updates
@@ -224,7 +229,7 @@ def addUpdate():
                 updatesData.append(i)
             updatesData.reverse()
             # insert new ads image url so that can use for html
-            data_updates.insert({'update_heading': update_heading, 'update_text': update_text, 'update_link': update_link, 'update_messenger':update_messenger })
+            data_updates.insert({'update_heading': update_heading, 'update_text': update_text, 'update_link': update_link, 'update_messenger':user["user_name"] })
             # return a message to the user
             # return render_template('homePage.html', updatesData = updatesData)
             return "Succesfully added an update, navigate to the <a href ='/homePage'> home page </a> to see the lastest update!"
