@@ -96,18 +96,17 @@ body {
                 <div class="row">
                     <div class="col-md-4">
                         <div class="profile-work">
-                            <p>WORK LINK</p> 
+                            <p><b>WORK LINK</b></p> 
                             <!-- We can set python if statements to check if user has these and display them if they do -->
                             <a href={{ user['user_linkedin'] }} target="_blank">LinkedIn</a><br/> 
-                            <a href="">Personal Website Link</a><br/>
-                            <a href="">Social Media?</a>
-                            <p>SKILLS</p>
+                            <p></p>
+                            <p><b>Programming Languages & Technologies</b></p>
                             <!-- WE CAN HAVE A FOR LOOP THAT DISPLAYS A MAXIMUM OF 5 IF desired -->
-                            <a href="">Web Designer</a><br/>
-                            <a href="">Web Developer</a><br/>
-                            <a href="">WordPress</a><br/>
-                            <a href="">WooCommerce</a><br/>
-                            <a href="">PHP, .Net</a><br/>
+                            <p> {{ user['user_skills'] }} </p>
+
+                            <p><b>Interests</b></p>
+                            <p> {{ user['user_interests'] }} </p>
+
                         </div>
                     </div>
                     <div class="col-md-8">

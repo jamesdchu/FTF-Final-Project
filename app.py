@@ -144,7 +144,7 @@ def profilePage():
             #Adding new user to database
             data_user_info.insert({"user_name":user_name,"user_email":user_email, "user_password": 
             str(bcrypt.hashpw(user_password.encode("utf-8"), bcrypt.gensalt()), 'utf-8'), "user_interest": user_interest, 
-            "user_education": user_education, "user_headline": user_headline, 'user_linkedin': user_linkedin, 'bio': bio, 'program': program})
+            "user_education": user_education, "user_headline": user_headline, 'user_linkedin': user_linkedin, 'bio': bio, 'program': program, 'user_skills': request.form['user_skills'], 'user_interests': request.form['user_interests']})
             # return redirect(url_for('homePage.html'))
             session["user_email"] = user_email
             # return render_template()
@@ -213,13 +213,8 @@ def addAds():
 def addUpdate():
     if session:
         if request.method == "POST":
-            # connect to the database
+            # pulls all the data from the form
             update_heading = request.form["update_heading"]
-            # update_messenger = request.form["update_messenger"]
-            #Uses session to find the users name
-            users = mongo.db.user_info
-            email = session['user_email']
-            user = users.find_one({"user_email":email})
             update_text = request.form["update_text"] 
             update_link = request.form["update_link"] 
             data_updates = mongo.db.updates
@@ -228,6 +223,10 @@ def addUpdate():
             for i in updates:
                 updatesData.append(i)
             updatesData.reverse()
+            #Uses session to find the users name
+            users = mongo.db.user_info
+            email = session['user_email']
+            user = users.find_one({"user_email":email})
             # insert new ads image url so that can use for html
             data_updates.insert({'update_heading': update_heading, 'update_text': update_text, 'update_link': update_link, 'update_messenger':user["user_name"] })
             # return a message to the user
