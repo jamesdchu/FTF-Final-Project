@@ -62,145 +62,144 @@ body {
         </div>
     </div> -->
 
-<div class="container emp-profile">
+<div class="container-fluid emp-profile">
     <br>
-            <form method="post" >
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="profile-img">
-                            <img src="https://api.adorable.io/avatars/285/{{ user["user_email"] }}.png" alt="" class="rounded-corners"/>
-                        </div>
-                    </div>
-                    <div class="col-lg-8">
-                        <div class="profile-head">
-                                    <h5>
-                                        {{ user["user_name"] }}
-                                    </h5>
-                                    <h6>
-                                        {{ user["user_headline"] }}
-                                    </h6>
-                                    <p class="FILL IN"> Biography: {{ user["bio"] }}  </p>
-                            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Projects and Experience</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <input type="submit" action='editProfile.html'class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
-                    </div>
+    <form method="post" >
+        <div class="row">
+            <div class="col-lg-3 mb-2">
+                <div class="profile-img mb-2">
+                    <img src="https://api.adorable.io/avatars/285/{{ user["user_email"] }}.png" alt="" class="rounded-corners"/>
                 </div>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="profile-work">
-                            <p><b>WORK LINK</b></p> 
-                            <!-- We can set python if statements to check if user has these and display them if they do -->
-                            <a href={{ user['user_linkedin'] }} target="_blank">LinkedIn</a><br/> 
-                            <p></p>
-                            <p><b>Programming Languages & Technologies</b></p>
-                            <!-- WE CAN HAVE A FOR LOOP THAT DISPLAYS A MAXIMUM OF 5 IF desired -->
-                            <p> {{ user['user_skills'] }} </p>
-
-                            <p><b>Interests</b></p>
-                            <p> {{ user['user_interests'] }} </p>
-
-                        </div>
-                    </div>
-                    <div class="col-md-8">
-                        <div class="tab-content profile-tab" id="myTabContent">
-                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Upperline Code Program(s)</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p> {{ user['user_program'] }} </p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Name</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p> {{ user['user_name']}} </p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Email</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p> {{ user['user_email'] }} </p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Education</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p> {{ user['user_education'] }} </p>
-                                            </div>
-                                        </div>
-
-                                        </div>
-                            </div>
-                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Experience</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>Expert</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Hourly Rate</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>10$/hr</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Total Projects</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>230</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>English Level</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>Expert</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Availability</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>6 months</p>
-                                            </div>
-                                        </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <label>Your Bio</label><br/>
-                                        <p>Your detail description</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <div class="col-md-1 ">
+                <input type="submit" action='editProfile.html'class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
+            </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="profile-head">
+                            <h5>
+                                {{ user["user_name"] }}
+                            </h5>
+                            <h6>
+                                {{ user["user_headline"] }}
+                            </h6>
+                            <p class="FILL IN"> Biography: {{ user["bio"] }}  </p>
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Projects and Experience</a>
+                        </li>
+                    </ul>
                 </div>
-            </form>           
+            </div>
         </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="profile-work">
+                    <p><b>WORK LINK</b></p> 
+                    <!-- We can set python if statements to check if user has these and display them if they do -->
+                    <a href={{ user['user_linkedin'] }} target="_blank">LinkedIn</a><br/> 
+                    <p></p>
+                    <p><b>Programming Languages & Technologies</b></p>
+                    <!-- WE CAN HAVE A FOR LOOP THAT DISPLAYS A MAXIMUM OF 5 IF desired -->
+                    <p> {{ user['user_skills'] }} </p>
+
+                    <p><b>Interests</b></p>
+                    <p> {{ user['user_interests'] }} </p>
+
+                </div>
+            </div>
+<div class="col-md-8">
+    <div class="tab-content profile-tab" id="myTabContent">
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Upperline Code Program(s)</label>
+                </div>
+                <div class="col-md-6">
+                    <p> {{ user['user_program'] }} </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Name</label>
+                </div>
+                <div class="col-md-6">
+                    <p> {{ user['user_name']}} </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Email</label>
+                </div>
+                <div class="col-md-6">
+                    <p> {{ user['user_email'] }} </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Education</label>
+                </div>
+                <div class="col-md-6">
+                    <p> {{ user['user_education'] }} </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        <div class="row">
+            <div class="col-md-6">
+                <label>Experience</label>
+            </div>
+            <div class="col-md-6">
+                <p>Expert</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label>Hourly Rate</label>
+            </div>
+            <div class="col-md-6">
+                <p>10$/hr</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label>Total Projects</label>
+            </div>
+            <div class="col-md-6">
+                <p>230</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label>English Level</label>
+            </div>
+            <div class="col-md-6">
+                <p>Expert</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label>Availability</label>
+            </div>
+            <div class="col-md-6">
+                <p>6 months</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <label>Your Bio</label><br/>
+                <p>Your detail description</p>
+            </div>
+        </div>
+    </div>
+</div>
+            </div>
+        </div>
+    </form>           
+</div>
 
 </div>
 </body>
