@@ -9,6 +9,10 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link rel="stylesheet" href="../static/css/styleHome.css">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
 <!-- edit import style sheet for respective pages -->
 <style>
 body {
@@ -188,10 +192,7 @@ section .section-title {
             <p>Some content..</p>
         </div>
     </div> -->
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
+
 
 <!-- Team -->
 <section id="team" class="pb-5">
@@ -208,7 +209,7 @@ section .section-title {
                                 <div class="card-body text-center">
                                     <p><img class=" img-fluid" src="https://api.adorable.io/avatars/285/{{ user["user_email"] }}.png" alt="card image"></p>
                                     <h4 class="card-title"> {{ user["user_name"] }} </h4>
-                                    <p class="card-text"> {{ user["user_headline"] }} </p>
+                                    <h2 class="card-text"> {{ user["user_headline"] }} </h2>
                                     <p class="card-text"> {{ user["user_email"]}}
                                     <a href="https://www.fiverr.com/share/qb8D02" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
                                 </div>
