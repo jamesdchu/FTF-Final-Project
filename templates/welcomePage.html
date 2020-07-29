@@ -12,7 +12,7 @@
 body {font-family: Arial, Helvetica, sans-serif;}
 
 /* Full-width input fields */
-input[type=text], input[type=password], input[type=url], input[type=email] {
+input[type=text], input[type=password], input[type=url], input[type=email], input[type=textarea] {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -255,13 +255,13 @@ body {
 
     <label for="headline"><b>Headline</b></label>
     <input type="text" placeholder="Enter Current Role ex)Student or Actuary" name="user_headline" required>
-
+    
     <label for "biography"><b>Biography</b></label>
-    <input type="text" placeholder="Enter a biography" name="bio" required>
-
+    <textarea type="text" class="form-control mr-lg-2" placeholder="Enter a biography" name="bio" overflow ="scroll" required></textarea>
+     <br>
     <label for "linkedin"><b>LinkedIn</b></label> 
     <input type="url" placeholder="Enter your LinkedIn URL" name="user_linkedin" required>
-
+   
     <label for "program"><b>Program(s) Participated In</b></label>
     <input type="text" placeholder="Enter All Upperline Code Programs That You Participated In and the Year: ex) FinTech Focus (2020)" name="program" required>
 
@@ -305,22 +305,22 @@ body {
     </div>
 
     <h3 style="text-align: center" > Goldman Sachs Cohort </h3>
-    <div class ="row text-center">
+    <div class ="row justify-content-center">
     <img class = "mb-5" src="https://files.slack.com/files-pri/T015TDL95UY-F017MJW9S2W/image__1_.png" alt= "Goldman Sachs Cohort" width= "100%" height="auto" >
     </div>
 
     <h3 style="text-align: center" > JP Morgan Cohort </h3>
-    <div class ="row text-center">
-    <img class = "mb-5" src="" alt="JP Morgan Cohort" width= "100%" height="auto" >
+    <div class ="row justify-content-center">
+    <img class = "mb-5" src="https://files.slack.com/files-pri/T015TDL95UY-F017R4B4YRL/jpmc_group_photo.png" alt="JP Morgan Cohort" width= "80%" height="auto" >
     </div>
 
     <h3 style="text-align: center" > Bank Of America Cohort </h3>
-    <div class ="row text-center">
+    <div class ="row justify-content-center">
     <img class = "mb-5" src="" alt="Bank Of America Cohort" width= "100%" height="auto" >
     </div>
 
     <h3 style="text-align: center" > Wells Fargo Cohort </h3>
-    <div class ="row text-center">
+    <div class ="row justify-content-center">
     <img class = "mb-5" src="" alt="Wells Fargo Cohort" width= "100%" height="auto" >
     </div>
 
