@@ -1,21 +1,11 @@
-# https://www.w3schools.com/python/trypython.asp?filename=demo_dictionary_nested2
+##FTF-Final Project
 
-# users["art_Meme"]= {
-#     'art1' = {'title': "blm",
-#     'picture': 'https://files.slack.com/files-pri/T015TDL95UY-F017MP1S9DZ/whiteboard_2_-01.png'
-#     },
-#    'art2'= {'title': 'you',
-#     'picture' : 'they',
-#     },
-# }
-# users["welcome_display"]= {
-#     {'title': 
-#     'picture':
-#     },
-#     {'title': 
-#     'picture' :
-#     },
-#     {'title': 
-#     'picture' :
-#     },
-# }
+#This function converts data from mongodb to a list
+def convert(data):
+    converted = data.find({})
+    convertedData = []
+    for i in converted:
+        convertedData.append(i)
+    return(convertedData.reverse())
+
+

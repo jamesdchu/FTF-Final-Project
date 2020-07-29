@@ -79,3 +79,111 @@ window.onclick = function(event) {
 
 </body>
 </html>
+<!-- # @app.route('/signUp', methods= ["GET", "POST"])
+# def signUp():
+#     # add mongo db stuff so that it adds user information when they sign up
+#     # users>> user, user_password, userbirthday etc
+#     if request.method == "GET":
+#         return "You have succesfully created an account, please navigate to <a href ='/homePage'> home page </a> to access the network!"
+#     else:
+#         user_name = request.form["user_name"]
+#         user_interest = request.form["user_interest"]
+#         user_education = request.form["user_education"]
+#         user_headline = request.form["user_headline"]
+#         user_linkedin = request.form["user_linkedin"]
+#         user_email = request.form["user_email"]
+#         user_password = request.form["psw"]
+#         user_password_repeat = request.form["psw-repeat"]
+#         bio = request.form["bio"]
+#         program = request.form["program"]
+#         ##Checking if the email is already registered and connecting to database
+#         data_user_info = mongo.db.user_info
+#         user_info = data_user_info.find({})
+#         user_infoData = []
+#         for i in user_info:
+#             user_infoData.append(i)
+#         # user_infoData.sort("user_name")
+#         existing_user = data_user_info.find_one({'user_email' : user_email})
+#         if existing_user is None: 
+#             #Checking that user entered same password
+#             if not (user_password == user_password_repeat): 
+#                 return ("You entered different passwords, please try again!")
+#             #Adding new user to database
+#             data_user_info.insert({"user_name":user_name,"user_email":user_email, "user_password": 
+#             user_password,"user_password_repeat":user_password_repeat, "user_interest": user_interest, 
+#             "user_education": user_education, "user_headline": user_headline, 'user_linkedin': user_linkedin, 'bio': bio, 'program': program})
+#             # return redirect(url_for('homePage.html'))
+#             session["user_email"] = user_email
+#             return render_template('homePage.html', user_infoData = user_infoData)
+#         return 'That email already exists! Try logging in.'
+#     return "You have succesfully created an account, please navigate to <a href ='/homePage'> home page </a> to access the network!"
+#     # return render_template('signUp.html')
+
+# @app.route('/signIn', methods= ["GET", "POST"])
+# def signIn():
+#     if request.method=="GET":
+#         return render_template('signIn.html')
+    # else:
+    #     user_email = request.form["user_email"]
+    #     user_password = request.form["password"]
+    #     ##Connecting to database
+    #     data_user_info = mongo.db.user_info
+    #     user_info = data_user_info.find({})
+    #     user_infoData = []
+    #     for i in user_info:
+    #         user_infoData.append(i)
+    #     #Checking to see if email in database
+    #     login_user = data_user_info.find_one({'user_email' : user_email})
+    #     print(login_user)
+    #     if login_user is None: 
+    #         return ("It seems like you do not have an account, please type your email correctly or sign up!")
+    #     elif user_password != login_user["user_password"]:
+    #         return "Incorrect password, please try again!"
+    #     elif (user_email == login_user["user_email"]) and (user_password == login_user["user_password"]): 
+    #         session["user_email"] = user_email
+    #         return "Success! You have signed in! Go to the <a href='/homePage'> home page! </a>"
+    #     return 'Invalid combination!'
+
+# @app.route('/signUp', methods = ["GET", "POST"])
+# def signUp(): -->
+
+<!-- '''
+@app.route('/signIn', methods= ["GET", "POST"])
+def signIn():
+    if request.method=="GET":
+        return render_template('signIn.html')
+    else:
+        user_email = request.form["user_email"]
+        user_password = request.form["password"]
+        ##Connecting to database
+        data_user_info = mongo.db.user_info
+        user_info = data_user_info.find({})
+        user_infoData = []
+        for i in user_info:
+            user_infoData.append(i)
+        #Checking to see if email in database
+        login_user = data_user_info.find_one({'user_email' : user_email})
+        print(login_user)
+        if login_user is None: 
+            return ("It seems like you do not have an account, please type your email correctly or sign up!")
+        elif user_password != login_user["user_password"]:
+            return "Incorrect password, please try again!"
+        elif (user_email == login_user["user_email"]) and (bcrypt.hashpw(user_password.encode('utf-8'), login_user['user_password'].encode('utf-8')) == login_user["user_password"].encode('utf-8')): 
+            session["user_email"] = user_email
+            data_updates = mongo.db.updates
+            updates = data_updates.find({})
+            updatesData = []
+            for i in updates:
+                updatesData.append(i)
+            updatesData.reverse()
+            data_ads = mongo.db.ads
+            ads = data_ads.find({})
+            adsData = []
+            print(ads)
+            for i in ads:
+                adsData.append(i)
+            adsData.reverse()
+            # return "Success! You have signed in! Go to the <a href='/homePage'> home page! </a>"
+            return render_template('homePage.html', updatesData = updatesData, adsData = adsData)
+        return 'Invalid combination!'
+''' -->
