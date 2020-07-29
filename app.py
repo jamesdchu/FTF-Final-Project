@@ -6,7 +6,6 @@ from flask import request
 import bcrypt
 from flask import redirect, session, url_for
 from flask_pymongo import PyMongo
-import bcrypt
 import model
 import os
 
@@ -72,9 +71,11 @@ def homePage():
         login_user = data_user_info.find_one({'user_email' : user_email})
         if login_user is None: 
             return ("It seems like you do not have an account, please type your email correctly or sign up!")
-        elif user_password != login_user["user_password"]:
+        elif (bcrypt.hashpw(user_password.encode('utf-8'), login_user['user_password'].encode('utf-8')) != login_user["user_password"].encode('utf-8')): #user_password != login_user["user_password"]:
+            print(login_user['user_password'].encode('utf-8'))
+            print(bcrypt.hashpw(user_password.encode('utf-8'), login_user['user_password'].encode('utf-8')))
             return "Incorrect password, please try again!"
-        elif (user_email == login_user["user_email"]) and (user_password == login_user["user_password"]): 
+        elif (user_email == login_user["user_email"]) and (bcrypt.hashpw(user_password.encode('utf-8'), login_user['user_password'].encode('utf-8')) == login_user["user_password"].encode('utf-8')): 
             session["user_email"] = user_email
             data_updates = mongo.db.updates
             updates = data_updates.find({})
@@ -113,7 +114,7 @@ def signIn():
             return ("It seems like you do not have an account, please type your email correctly or sign up!")
         elif user_password != login_user["user_password"]:
             return "Incorrect password, please try again!"
-        elif (user_email == login_user["user_email"]) and (user_password == login_user["user_password"]): 
+        elif (user_email == login_user["user_email"]) and (bcrypt.hashpw(user_password.encode('utf-8'), login_user['user_password'].encode('utf-8')) == login_user["user_password"].encode('utf-8')): 
             session["user_email"] = user_email
             data_updates = mongo.db.updates
             updates = data_updates.find({})
@@ -197,17 +198,17 @@ def signIn():
     #         return "Success! You have signed in! Go to the <a href='/homePage'> home page! </a>"
     #     return 'Invalid combination!'
 
-@app.route('/add')
+# @app.route('/add')
 
-def add():
-    # connect to the database
-    user_email = request.form["user_email"] 
-    collection = mongo.db.user_info
-    # user_info = collection.find({})
-    collection.insert({'user_name': "jameschu", "user_email":"james2@gmail.com", "user_password": "password"})
-    # insert new data
-    # return a message to the user
-    return "Done!"
+# def add():
+#     # connect to the database
+#     user_email = request.form["user_email"] 
+#     collection = mongo.db.user_info
+#     # user_info = collection.find({})
+#     collection.insert({'user_name': "jameschu", "user_email":"james2@gmail.com", "user_password": "password"})
+#     # insert new data
+#     # return a message to the user
+#     return "Done!"
 
 
 # @app.route('/signUp', methods = ["GET", "POST"])
@@ -266,7 +267,7 @@ def profilePage():
                 return ("You entered different passwords, please try again!")
             #Adding new user to database
             data_user_info.insert({"user_name":user_name,"user_email":user_email, "user_password": 
-            user_password,"user_password_repeat":user_password_repeat, "user_interest": user_interest, 
+            str(bcrypt.hashpw(user_password.encode("utf-8"), bcrypt.gensalt()), 'utf-8'),"user_password_repeat":user_password_repeat, "user_interest": user_interest, 
             "user_education": user_education, "user_headline": user_headline, 'user_linkedin': user_linkedin, 'bio': bio, 'program': program})
             # return redirect(url_for('homePage.html'))
             session["user_email"] = user_email
