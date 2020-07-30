@@ -71,7 +71,7 @@ body {
                     <img src="https://api.adorable.io/avatars/285/{{ user["user_email"] }}.png" alt="" class="rounded-corners"/>
                 </div>
             <div class="col-md-1 ">
-                <input type="submit" action='editProfile.html'class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
+                <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
             </div>
             </div>
             <div class="col-lg-9">
@@ -202,5 +202,9 @@ body {
 </div>
 
 </div>
+
+<form method="post" action="/deleteAccount">
+    <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Delete Profile"/>
+</form>    
 </body>
 </html>
