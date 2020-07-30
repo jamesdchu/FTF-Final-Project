@@ -141,53 +141,68 @@ def deleteAccount():
 
 @app.route('/profilePage', methods= ["GET", "POST"])
 def profilePage():
-    if request.method == "GET":
-        if session:
-            users = mongo.db.user_info
-            email = session['user_email']
-            user = users.find_one({"user_email":email})
-            return render_template('profilePage.html', user=user)
-        else:
-            return "You are not Signed In, navigate to the <a href ='/welcomePage'> welcome page </a> to log in!"
-    else:
-        return "<h3 {text-center}> Page under construction, if you need to edit your profile please contact us or delete your account and create a new one! To delete your account, navigate to the bottom of <a href ='/profilePage'> profile page </a> to do so!"
+    # if request.method == "GET":
+    # data_user_info = mongo.db.user_info
+    # user_info = data_user_info.find({})
+    # user_infoData = []
+    # for i in user_info:
+    #     user_infoData.append(i)
+    # # user_infoData.sort("user_name")
+    # session['user_email'] = user_email
+    # if session:
+    users = mongo.db.user_info
+    email = session['user_email']
+    user = users.find_one({"user_email":email})
+    return render_template('profilePage.html', user=user)
+    # else:
+    #     return "You are not Signed In, navigate to the <a href ='/welcomePage'> welcome page </a> to log in!"
+    # else:
+
+@app.route('/editProflie', methods= ["GET", "POST"])
+def editProflie():
+    return "<h3 {text-center}> Page under construction, if you need to edit your profile please contact us or delete your account and create a new one! To delete your account, navigate to the bottom of <a href ='/profilePage'> profile page </a> to do so!"
+       
+
+@app.route('/signUp', methods= ["GET", "POST"])
+def signUp():
+        # return "<h3 {text-center}> Page under construction, if you need to edit your profile please contact us or delete your account and create a new one! To delete your account, navigate to the bottom of <a href ='/profilePage'> profile page </a> to do so!"
         # # EDIT PROFILE BLOCK [collectionname].update({"user_email": ""}) example below
         # https://www.w3schools.com/python/showpython.asp?filename=demo_mongodb_update_one
-        # user_name = request.form["user_name"]
-        # user_interest = request.form["user_interest"]
-        # user_education = request.form["user_education"]
-        # user_headline = request.form["user_headline"]
-        # user_linkedin = request.form["user_linkedin"]
-        # user_email = request.form["user_email"]
-        # user_password = request.form["psw"]
-        # user_password_repeat = request.form["psw-repeat"]
-        # bio = request.form["bio"]
-        # program = request.form["program"]
-        # ##Checking if the email is already registered and connecting to database
-        # data_user_info = mongo.db.user_info
-        # user_info = data_user_info.find({})
-        # user_infoData = []
-        # for i in user_info:
-        #     user_infoData.append(i)
-        # # user_infoData.sort("user_name")
-        # existing_user = data_user_info.find_one({'user_email' : user_email})
-        # if existing_user is None: 
-        #     #Checking that user entered same password
-        #     if not (user_password == user_password_repeat): 
-        #         return ("You entered different passwords, please try again!")
-        #     #Adding new user to database
-        #     data_user_info.insert({"user_name":user_name,"user_email":user_email, "user_password": 
-        #     str(bcrypt.hashpw(user_password.encode("utf-8"), bcrypt.gensalt()), 'utf-8'), "user_interest": user_interest, 
-        #     "user_education": user_education, "user_headline": user_headline, 'user_linkedin': user_linkedin, 'bio': bio, 'program': program, 'user_skills': request.form['user_skills'], 'user_interests': request.form['user_interests']})
-        #     # return redirect(url_for('homePage.html'))
-        #     session["user_email"] = user_email
-        #     # return render_template()
-        #     users = mongo.db.user_info
-        #     email = session['user_email']
-        #     user = users.find_one({"user_email":email})
-        #     return render_template('profilePage.html', user=user, user_infoData = user_infoData, )
-        # else:
-        #     return 'That email already exists! Try logging in.'
+    user_name = request.form["user_name"]
+    user_interest = request.form["user_interest"]
+    user_education = request.form["user_education"]
+    user_headline = request.form["user_headline"]
+    user_linkedin = request.form["user_linkedin"]
+    user_email = request.form["user_email"]
+    user_password = request.form["psw"]
+    user_password_repeat = request.form["psw-repeat"]
+    bio = request.form["bio"]
+    program = request.form["program"]
+    ##Checking if the email is already registered and connecting to database
+    data_user_info = mongo.db.user_info
+    user_info = data_user_info.find({})
+    user_infoData = []
+    for i in user_info:
+        user_infoData.append(i)
+    # user_infoData.sort("user_name")
+    existing_user = data_user_info.find_one({'user_email' : user_email})
+    if existing_user is None: 
+        #Checking that user entered same password
+        if not (user_password == user_password_repeat): 
+            return ("You entered different passwords, please try again!")
+        #Adding new user to database
+        data_user_info.insert({"user_name":user_name,"user_email":user_email, "user_password": 
+        str(bcrypt.hashpw(user_password.encode("utf-8"), bcrypt.gensalt()), 'utf-8'), "user_interest": user_interest, 
+        "user_education": user_education, "user_headline": user_headline, 'user_linkedin': user_linkedin, 'bio': bio, 'program': program, 'user_skills': request.form['user_skills'], 'user_interests': request.form['user_interests']})
+        # return redirect(url_for('homePage.html'))
+        session["user_email"] = user_email
+        # return render_template()
+        users = mongo.db.user_info
+        email = session['user_email']
+        user = users.find_one({"user_email":email})
+        return render_template('profilePage.html', user=user, user_infoData = user_infoData, )
+    else:
+        return 'That email already exists! Try logging in.'
 
 @app.route('/addArt', methods= ["GET", "POST"])
 def addArt():
